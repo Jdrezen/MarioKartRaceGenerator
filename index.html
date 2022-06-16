@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <link rel="stylesheet" href="style.css" />
+    <body>
+        <div id="page">
+            <input type="button" id="button" value="Trouver prochaine course" onclick="generate()">
+            <div id="coupeText"> Coupe : 1</div>
+            <img id="coupeImage" src="images/champignon.png">
+            <div id="courseText"> Course : 1</div>
+            <img id="courseImage" src="images/champidrome.png">
+        </div> 
+                
+    </body>
+    <script>
+        const coupesImg = ["images/champignon.png","images/fleur.png"];
+        const coursesImg = ["images/champidrome.png"]
+        function generate(){
+            const nombre = Math.floor(Math.random() * 48);
+            const reste = nombre % 4;
+            const quotient = parseInt(nombre / 4);
+
+            document.getElementById("coupeText").innerHTML = "Coupe : " + (quotient + 1);
+            document.getElementById("courseText").innerHTML = "Course : " + (reste + 1);
+            document.getElementById("courseImage").src = coursesImg[0];
+            document.getElementById("coupeImage").src = coupesImg[quotient%2];
+        }
+    </script>
+</html>
