@@ -4,25 +4,67 @@
     <body>
         <div id="page">
             <input type="button" id="button" value="Trouver prochaine course" onclick="generate()">
-            <div id="coupeText"> Coupe : 1</div>
-            <img id="coupeImage" src="images/champignon.png">
-            <div id="courseText"> Course : 1</div>
-            <img id="courseImage" src="images/champidrome.png">
+            <input type="button" id="button" value="Réinitialiser" onclick="clean()">
+            <img id="coupeImage">
+            <div id="nombreCourses">Nombre de courses restantes : </div>
+            <div id="courseText"></div>
+            <div id="erreur"\>
         </div> 
                 
     </body>
     <script>
-        const coupesImg = ["images/champignon.png","images/fleur.png"];
-        const coursesImg = ["images/champidrome.png"]
-        function generate(){
-            const nombre = Math.floor(Math.random() * 48);
-            const reste = nombre % 4;
-            const quotient = parseInt(nombre / 4);
+        const coupesImg = ["images/champignon.png", "images/fleur.png", "images/etoile.png", "images/couronne.png",
+        "images/oeuf.png", "images/animal_crossing.png", "images/carapace.png", "images/banane.png",
+        "images/feuille.png", "images/eclair.png", "images/triforce.png", "images/clochette.png"];
 
-            document.getElementById("coupeText").innerHTML = "Coupe : " + (quotient + 1);
-            document.getElementById("courseText").innerHTML = "Course : " + (reste + 1);
-            document.getElementById("courseImage").src = coursesImg[0];
-            document.getElementById("coupeImage").src = coupesImg[quotient%2];
+        const nomCourses = ["Champidrome", "Parc Glougloop", "Piste aux délices", "Temple Thwomp"
+        , "Circuit Mario ", "Promenade Toad", "Manoir trempé", "Cascades Maskass"
+        , "Aéroport Azur", "Lagon Tourbillon", "Club Mario", "Descente givrée"
+        , "Voie céleste", "Désert Toussec", "Château de Bowser", "Route Arc-en-ciel"
+        , "GCN Circuit Yoshi", "Arène d'Excitebike", "Route du dragon", "Mute City"
+        , "GCN Parc Baby", "GBA Pays Fromage", "Passage Feuillage", "Animal Crossing"
+        , "Wii Prairie Meuh Meuh", "GBA Circuit Mario", "DS Plage Cheep Cheep", "N64 Autoroute Toad"
+        , "GCN Désert Sec Sec", "SNES Plaine Donut 3", "N64 Autodrome royal", "3DS Forêt tropicale DK"
+        , "DS Stade Wario", "GCN Royaume Sorbet", "3DS Piste musicale", "N64 Vallée Yoshi"
+        , "DS Horloge Tic-Tac", "3DS Égout Piranha", "Wii Volcan grondant", "N64 Route Arc-en-ciel"
+        , "Wii Mine Wario", "SNES Route Arc-en-ciel", "Station Glagla", "Circuit d'Hyrule"
+        , "3DS Koopapolis", "GBA Route Ruban", "Métro Turbo", "Big Blue"];
+
+        let coursesRestantes = [];
+        for(let i = 0; i < nomCourses.length; i++){
+            coursesRestantes.push(i);        
         }
+
+        document.getElementById("nombreCourses").innerHTML += nomCourses.length; 
+
+        function generate(){
+            const course = coursesRestantes.length != 0 ? Math.floor(Math.random() * coursesRestantes.length) : -1;
+
+            if(course != -1){
+                const coupe = parseInt(coursesRestantes[course] / 4);
+
+                document.getElementById("courseText").innerHTML = nomCourses[coursesRestantes[course]];
+                document.getElementById("coupeImage").src = coupesImg[coupe];
+
+                coursesRestantes.splice(course, 1);
+                document.getElementById("nombreCourses").innerHTML = "Nombre de courses restantes : " + coursesRestantes.length;
+            }
+            
+            else{
+                document.getElementById("erreur").innerHTML = "Toutes les courses sont sorties !";
+            }
+        }
+
+        function clean(){
+            coursesRestantes = [];
+            for(let i = 0; i < nomCourses.length; i++){
+                coursesRestantes.push(i);        
+            }
+            document.getElementById("nombreCourses").innerHTML = "Nombre de courses restantes : " + coursesRestantes.length; 
+            document.getElementById("courseText").innerHTML = "";
+            document.getElementById("coupeImage").src = "";
+            document.getElementById("erreur").innerHTML = "";
+        }
+
     </script>
 </html>
