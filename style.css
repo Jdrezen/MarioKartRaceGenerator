@@ -1,35 +1,32 @@
 
-#image{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-    height: 50%;
+#coupeImage{
+    width: 10%;
+    height: 10%;
+}
+
+@media all and (orientation: portrait){
+    #coupeImage{
+        width: 50%;
+        height: 50%;
+    }
 }
 
 div{
     text-align: center;
     color: white;
-    margin-top: 10px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    font-size: large;
 }
 
 body{
-    background-color: black;
-}
-
-#page{
-    margin-left: auto;
-    margin-right: auto;
-    width: 30%;
-    height: 30%;
+    background-color: rgb(30, 30, 30);
 }
 
 #button{
     width: 200px;
-   height: 30px;
-   background-color: black;
-  color: red;
-  text-align: center;
-  font-size: 15px;
-  cursor: pointer;
+    height: 30px;
+    text-align: center;
+    font-size: 15px;
+    
 }
